@@ -6,10 +6,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @SpringBootApplication
 @EnableScheduling
-public class DzMenuAppApplication {
-
+public class DZMenuAppApplication {
 	public static void main(final String[] args) {
-		SpringApplication.run(DzMenuAppApplication.class, args);
+		SpringApplication.run(DZMenuAppApplication.class, args);
 	}
-
 }
