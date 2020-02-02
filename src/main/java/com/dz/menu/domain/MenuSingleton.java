@@ -2,14 +2,9 @@ package com.dz.menu.domain;
 
 import com.comedor.menu.*;
 import com.comedor.util.MenuUtils;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
-
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 public enum MenuSingleton {
     INSTANCE
@@ -22,15 +17,12 @@ public enum MenuSingleton {
     }
 
     public void load(final String menuFilePath) throws Exception {
-        try (final Workbook workbook = WorkbookFactory.create(new File(menuFilePath))) {
-            final int numberOfSheets = workbook.getNumberOfSheets();
-            for (int i = 0; i < numberOfSheets; i++) {
-                final Sheet sheet = workbook.getSheetAt(3);
-
-                final Optional<Menu> menu = MenuUtils.extractMenuFromSheet(sheet);
-                menu.ifPresent(mn -> menus.add(mn));
-            }
+        final List<Menu> menusFromFile = MenuUtils.extractMenuFromFile(menuFilePath);
+        if (!menusFromFile.isEmpty()) {
+            this.menus.clear();
+            this.menus.addAll(menusFromFile);
         }
+
     }
 
     // Return a copy of it:
