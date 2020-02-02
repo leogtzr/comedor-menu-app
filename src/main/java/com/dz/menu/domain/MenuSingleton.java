@@ -22,7 +22,6 @@ public enum MenuSingleton {
             this.menus.clear();
             this.menus.addAll(menusFromFile);
         }
-
     }
 
     // Return a copy of it:
