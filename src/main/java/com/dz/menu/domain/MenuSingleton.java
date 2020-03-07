@@ -5,7 +5,6 @@ import com.comedor.util.MenuUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public enum MenuSingleton {
     INSTANCE
     ;
