@@ -5,12 +5,12 @@ import com.dz.menu.domain.MenuSingleton;
 import com.dz.menu.repository.MenuRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
 import java.util.List;
 
 @RestController
@@ -36,6 +36,18 @@ public class SomeController {
         final MenuSingleton instance = MenuSingleton.INSTANCE;
         final List<Menu> menus = instance.menus();
         return Flux.fromIterable(menus).flatMap(menu -> this.menuRepository.save(menu)).collectList();
+    }
+
+    @GetMapping("/menunames")
+    @ResponseBody
+    public Mono<List<String>> menuNames() {
+        return this.menuRepository.findAll().map(menu -> menu.getTitle()).collectList();
+    }
+    
+    @GetMapping("/menu/{title}")
+    @ResponseBody
+    public Mono<Menu> getMenuByTitle(@PathVariable String title) {
+        return this.menuRepository.findByTitle(title);
     }
 
 }
