@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link data-th-href="@{/css/bootstrap.min.css}" rel="stylesheet">
-    <link data-th-href="@{/css/main.css}" rel="stylesheet">
+<!--    <link data-th-href="@{/css/bootstrap.min.css}" rel="stylesheet">-->
+<!--    <link data-th-href="@{/css/main.css}" rel="stylesheet">-->
 </head>
 <body>
 
@@ -13,22 +13,10 @@
 
     <div class="row">
         <div id="title">
-            <h1>Menus ... </h1>
+            <h1>Menus</h1>
         </div>
-        <table id="allMovies" class="table table-striped">
-            <thead>
-            <tr>
-                <th width="70%">Name</th>
-                <th>Score</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr class="result" data-th-each="title : ${titles}">
-                <td>[[${title}]]</td>
-                <td>[[${title}]]</td>
-            </tr>
-            </tbody>
-        </table>
+        <ul th:each="title: ${titles}">
+            <li th:each="t : ${title}" th:text="${t}"></li>
+        </ul>
     </div>
-
 </div>
