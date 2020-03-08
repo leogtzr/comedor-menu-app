@@ -16,7 +16,9 @@
             <h1>Menus</h1>
         </div>
         <ul th:each="title: ${titles}">
-            <li th:each="t : ${title}" th:text="${t}"></li>
+            <li th:each="t : ${title}">
+                <a th:text="${t}" th:href="${'menu/' + t}"/>
+            </li>
         </ul>
     </div>
 </div>
