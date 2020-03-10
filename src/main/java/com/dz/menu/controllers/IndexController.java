@@ -16,7 +16,6 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(final Model model) {
-// loads 1 and display 1, stream data, data driven mode.
         final IReactiveDataDriverContextVariable reactiveDataDrivenMode =
                 new ReactiveDataDriverContextVariable(menuService.titles().flux(), 1);
 
