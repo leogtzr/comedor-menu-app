@@ -20,7 +20,6 @@ public class IndexController {
                 new ReactiveDataDriverContextVariable(menuService.titles().flux(), 1);
 
         model.addAttribute("titles", reactiveDataDrivenMode);
-
         return "index";
     }
 

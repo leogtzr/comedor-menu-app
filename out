@@ -61,9 +61,9 @@ Error has been observed at the following site(s):
 Stack trace:
 		at reactor.core.publisher.BlockingSingleSubscriber.blockingGet(BlockingSingleSubscriber.java:117) ~[reactor-core-3.3.2.RELEASE.jar!/:3.3.2.RELEASE]
 		at reactor.core.publisher.Mono.block(Mono.java:1687) ~[reactor-core-3.3.2.RELEASE.jar!/:3.3.2.RELEASE]
-		at com.dz.menu.controllers.SomeController.lambda$saveShit$0(SomeController.java:40) ~[classes!/:0.0.1-SNAPSHOT]
+		at com.dz.menu.controllers.MenuController.lambda$saveShit$0(SomeController.java:40) ~[classes!/:0.0.1-SNAPSHOT]
 		at java.base/java.util.ArrayList.forEach(ArrayList.java:1540) ~[na:na]
-		at com.dz.menu.controllers.SomeController.saveShit(SomeController.java:38) ~[classes!/:0.0.1-SNAPSHOT]
+		at com.dz.menu.controllers.MenuController.saveShit(SomeController.java:38) ~[classes!/:0.0.1-SNAPSHOT]
 		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
 		at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
 		at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]

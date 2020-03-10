@@ -16,21 +16,14 @@ import java.util.List;
 
 @RestController
 @Slf4j
-public class SomeController {
+public class MenuController {
 
     private MenuRepository menuRepository;
     private MenuService menuService;
 
-    public SomeController(final MenuRepository menuRepository, final MenuService menuService) {
+    public MenuController(final MenuRepository menuRepository, final MenuService menuService) {
         this.menuRepository = menuRepository;
         this.menuService = menuService;
-    }
-
-    @GetMapping("/hola")
-    public void foo() {
-        final MenuSingleton instance = MenuSingleton.INSTANCE;
-        final List<Menu> menus = instance.menus();
-        menus.forEach(System.out::println);
     }
 
     @GetMapping("/save")
@@ -39,12 +32,6 @@ public class SomeController {
         final MenuSingleton instance = MenuSingleton.INSTANCE;
         final List<Menu> menus = instance.menus();
         return Flux.fromIterable(menus).flatMap(menu -> this.menuRepository.save(menu)).collectList();
-    }
-
-    @GetMapping("/menunames")
-    @ResponseBody
-    public Mono<List<String>> menuNames() {
-        return this.menuRepository.findAll().map(menu -> menu.getTitle()).collectList();
     }
 
     @GetMapping("/menu/{title}")
