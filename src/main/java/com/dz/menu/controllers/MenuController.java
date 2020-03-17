@@ -1,5 +1,7 @@
 package com.dz.menu.controllers;
 
+import com.comedor.menu.Day;
+import com.comedor.menu.DayMeal;
 import com.comedor.menu.Menu;
 import com.dz.menu.domain.MenuSingleton;
 import com.dz.menu.repository.MenuRepository;
@@ -34,16 +36,24 @@ public class MenuController {
         return Flux.fromIterable(menus).flatMap(menu -> this.menuRepository.save(menu)).collectList();
     }
 
-    @GetMapping("/menu/{title}")
+    @GetMapping("/menus/{title}")
     @ResponseBody
     public Mono<Menu> getMenuByTitle(@PathVariable String title) {
         return this.menuRepository.findByTitle(title);
     }
 
-    @GetMapping("/titles")
+    @GetMapping("/menus")
     @ResponseBody
     public Mono<List<String>> titles() {
         return this.menuService.titles();
+    }
+
+    @GetMapping("/menus/{day}/{title}")
+    @ResponseBody
+    public Mono<DayMeal> lunchByDay(@PathVariable String day, @PathVariable String title) {
+        final Mono<Menu> byTitle = menuRepository.findByTitle(title);
+        final String dayName = day.toUpperCase();
+        return byTitle.map(x -> x.getMenu().get(dayName));
     }
 
 }
