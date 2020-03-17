@@ -2,6 +2,7 @@ package com.dz.menu.controllers;
 
 import com.comedor.menu.Day;
 import com.comedor.menu.DayMeal;
+import com.comedor.menu.Food;
 import com.comedor.menu.Menu;
 import com.dz.menu.domain.MenuSingleton;
 import com.dz.menu.repository.MenuRepository;
@@ -50,10 +51,34 @@ public class MenuController {
 
     @GetMapping("/menus/{day}/{title}")
     @ResponseBody
-    public Mono<DayMeal> lunchByDay(@PathVariable String day, @PathVariable String title) {
+    public Mono<DayMeal> foodByDay(@PathVariable String day, @PathVariable String title) {
         final Mono<Menu> byTitle = menuRepository.findByTitle(title);
-        final String dayName = day.toUpperCase();
+        final Day dayName = Day.valueOf(day.toUpperCase());
         return byTitle.map(x -> x.getMenu().get(dayName));
+    }
+
+    @GetMapping("/menus/br/{day}/{title}")
+    @ResponseBody
+    public Mono<Food> breakfastByDay(@PathVariable String day, @PathVariable String title) {
+        final Mono<Menu> byTitle = menuRepository.findByTitle(title);
+        final Day dayName = Day.valueOf(day.toUpperCase());
+        return byTitle.map(x -> x.getMenu().get(dayName).getBreakfast());
+    }
+
+    @GetMapping("/menus/salads/{day}/{title}")
+    @ResponseBody
+    public Mono<List<String>> saladsByDay(@PathVariable String day, @PathVariable String title) {
+        final Mono<Menu> byTitle = menuRepository.findByTitle(title);
+        final Day dayName = Day.valueOf(day.toUpperCase());
+        return byTitle.map(x -> x.getMenu().get(dayName).getSalads());
+    }
+
+    @GetMapping("/menus/lunch/{day}/{title}")
+    @ResponseBody
+    public Mono<List<Food>> lunchByDay(@PathVariable String day, @PathVariable String title) {
+        final Mono<Menu> byTitle = menuRepository.findByTitle(title);
+        final Day dayName = Day.valueOf(day.toUpperCase());
+        return byTitle.map(x -> x.getMenu().get(dayName).getLunchDinnerFoodAlternatives());
     }
 
 }
