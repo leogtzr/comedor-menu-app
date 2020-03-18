@@ -54,7 +54,7 @@ public class MenuController {
     public Mono<DayMeal> foodByDay(@PathVariable String day, @PathVariable String title) {
         final Mono<Menu> byTitle = menuRepository.findByTitle(title);
         final Day dayName = Day.valueOf(day.toUpperCase());
-        return byTitle.map(x -> x.getMenu().get(dayName));
+        return byTitle.map(m -> m.getMenu().get(dayName));
     }
 
     @GetMapping("/menus/br/{day}/{title}")
@@ -62,7 +62,7 @@ public class MenuController {
     public Mono<Food> breakfastByDay(@PathVariable String day, @PathVariable String title) {
         final Mono<Menu> byTitle = menuRepository.findByTitle(title);
         final Day dayName = Day.valueOf(day.toUpperCase());
-        return byTitle.map(x -> x.getMenu().get(dayName).getBreakfast());
+        return byTitle.map(m -> m.getMenu().get(dayName).getBreakfast());
     }
 
     @GetMapping("/menus/salads/{day}/{title}")
@@ -70,7 +70,7 @@ public class MenuController {
     public Mono<List<String>> saladsByDay(@PathVariable String day, @PathVariable String title) {
         final Mono<Menu> byTitle = menuRepository.findByTitle(title);
         final Day dayName = Day.valueOf(day.toUpperCase());
-        return byTitle.map(x -> x.getMenu().get(dayName).getSalads());
+        return byTitle.map(m -> m.getMenu().get(dayName).getSalads());
     }
 
     @GetMapping("/menus/lunch/{day}/{title}")
@@ -78,7 +78,7 @@ public class MenuController {
     public Mono<List<Food>> lunchByDay(@PathVariable String day, @PathVariable String title) {
         final Mono<Menu> byTitle = menuRepository.findByTitle(title);
         final Day dayName = Day.valueOf(day.toUpperCase());
-        return byTitle.map(x -> x.getMenu().get(dayName).getLunchDinnerFoodAlternatives());
+        return byTitle.map(m -> m.getMenu().get(dayName).getLunchDinnerFoodAlternatives());
     }
 
 }
