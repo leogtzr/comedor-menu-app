@@ -26,7 +26,7 @@ export default class AppNavbar extends Component {
               href="https://twitter.com/leogtzr">@leogtzr</NavLink>
           </NavItem>
           <NavItem>
-            <NavLink href="https://github.com/oktadeveloper/okta-spring-boot-react-crud-example">GitHub</NavLink>
+            <NavLink href="https://github.com/leogtzr/comedor-menu-app/">GitHub</NavLink>
           </NavItem>
         </Nav>
       </Collapse>
