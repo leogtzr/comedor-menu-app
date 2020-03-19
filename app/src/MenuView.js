@@ -38,6 +38,14 @@ class MenuView extends Component {
         const todo = days.map((day, key) => {
           return <tr key="monday">
             <td style={{whiteSpace: 'nowrap'}}>{nameDays[key]}</td>
+            <td style={{whiteSpace: 'nowrap', fontSize: 10}}>
+              <ul>{day.lunchDinnerFoodAlternatives.map(
+                  food => 
+                    <li>{food.name} ({food.mealType} {food.kcal} kcal)</li>
+                )
+                }
+              </ul>
+            </td>
             <td style={{whiteSpace: 'nowrap'}}>{day.breakfast.name} ({day.breakfast.kcal} kcal)</td>
             <td style={{whiteSpace: 'nowrap', fontSize: 10}}>
               <ul>{day.salads.map(salad => <li>{salad}</li>)}</ul>
@@ -55,6 +63,7 @@ class MenuView extends Component {
                 <thead>
                 <tr>
                   <th>Day</th>
+                  <th>Food</th>
                   <th>Breakfast</th>
                   <th>Salads</th>
                 </tr>
