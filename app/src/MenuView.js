@@ -39,7 +39,9 @@ class MenuView extends Component {
           return <tr key="monday">
             <td style={{whiteSpace: 'nowrap'}}>{nameDays[key]}</td>
             <td style={{whiteSpace: 'nowrap'}}>{day.breakfast.name} ({day.breakfast.kcal} kcal)</td>
-            <td style={{whiteSpace: 'nowrap', fontSize: 10}}>{day.salads.join(", ")}</td>
+            <td style={{whiteSpace: 'nowrap', fontSize: 10}}>
+              <ul>{day.salads.map(salad => <li>{salad}</li>)}</ul>
+            </td>
           </tr>
         });
 
