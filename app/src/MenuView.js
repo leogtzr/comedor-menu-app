@@ -3,10 +3,10 @@ import {
   // Button, 
   // ButtonGroup, 
   Container, 
-  // Table 
+  Table 
 } from 'reactstrap';
-import AppNavbar from './AppNavbar';
 // import { Link } from 'react-router-dom';
+import AppNavbar from './AppNavbar';
 
 class MenuView extends Component {
     
@@ -31,24 +31,36 @@ class MenuView extends Component {
         if (isLoading) {
           return <h2>Loading...</h2>
         }
-  
-    
+
+        const {MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY} = menu.menu;
+        const days = [MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY, SUNDAY];
+        const nameDays = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sabado", "Domingo"];
+        const todo = days.map((day, key) => {
+          return <tr key="monday">
+            <td style={{whiteSpace: 'nowrap'}}>{nameDays[key]}</td>
+            <td style={{whiteSpace: 'nowrap'}}>{day.breakfast.name} ({day.breakfast.kcal} kcal)</td>
+            <td style={{whiteSpace: 'nowrap', fontSize: 10}}>{day.salads.join(", ")}</td>
+          </tr>
+        });
+
         return (
           <div>
             <AppNavbar/>
             <Container fluid>
-              <h2>{menu.title}</h2>
-              <h3>{menu.menu["MONDAY"].breakfast.name}</h3>
-              {/* <Table>
+              <h2>{menu.title}</h2> 
+              
+              <Table>
                 <thead>
                 <tr>
-                  <th>Name</th>
+                  <th>Day</th>
+                  <th>Breakfast</th>
+                  <th>Salads</th>
                 </tr>
                 </thead>
                 <tbody>
-                {groupList}
+                {todo}
                 </tbody>
-              </Table> */}
+              </Table>
             </Container>
           </div>
         );
